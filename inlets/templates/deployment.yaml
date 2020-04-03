@@ -20,7 +20,7 @@ spec:
           secretName: {{ include "inlets.fullname" . }}
       containers:
         - name: {{ include "inlets.fullname" . }}
-          image: {{ .Values.image.name }}:{{ .Values.image.tag }}
+          image: {{ .Values.inlets.image.repository }}:{{ .Values.inlets.image.tag }}
           args:
             - server
             - --port=8000

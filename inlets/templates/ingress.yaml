@@ -14,7 +14,7 @@ metadata:
   {{- end }}
 spec:
   rules:
-    - host: {{ include "inlets.subdomain" . }}.{{ .Values.domain }}
+    - host: {{ include "inlets.subdomain" . }}.{{ .Values.inlets.domain }}
       http:
         paths:
           - backend:

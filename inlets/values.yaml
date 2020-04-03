@@ -1,6 +1,7 @@
-image:
-  name: inlets/inlets
-  tag: 2.7.0
+inlets:
+  image:
+    name: inlets/inlets
+    tag: 2.7.0
 
 ingress:
   annotations: {}
