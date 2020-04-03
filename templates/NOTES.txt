@@ -1,0 +1,8 @@
+Inlets server is up and running, new start the client by running this commands:
+
+export UPSTREAM=http://127.0.0.1:8000
+
+inlets client  \
+  --remote=ws://{{ include "inlets.subdomain" . }}.{{ .Values.domain }}  \
+  --token {{ .Values.token }} \
+  --upstream $UPSTREAM

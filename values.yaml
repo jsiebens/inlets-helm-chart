@@ -1,0 +1,19 @@
+image:
+  name: inlets/inlets
+  tag: 2.7.0
+
+ingress:
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+
+resources: {}
+  # requests:
+  #   cpu: "100m"
+  #   memory: "50Mi"
+  # limits:
+  #   cpu: "300m"
+  #   memory: "150Mi"
+
+nodeSelector: {}
+tolerations: []
+affinity: {}

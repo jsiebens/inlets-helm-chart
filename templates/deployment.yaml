@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "inlets.fullname" . }}
+  labels:
+    {{- include "inlets.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "inlets.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "inlets.selectorLabels" . | nindent 8 }}
+    spec:
+      volumes:
+      - name: token
+        secret:
+          secretName: {{ include "inlets.fullname" . }}
+      containers:
+        - name: {{ include "inlets.fullname" . }}
+          image: {{ .Values.image.name }}:{{ .Values.image.tag }}
+          args:
+            - server
+            - --port=8000
+            - --print-token=false
+            - --token-from=/etc/inlets/token
+          envFrom:
+          - secretRef:
+              name: {{ include "inlets.fullname" . }}
+          ports:
+            - name: data
+              containerPort: 8000
+          volumeMounts:
+          - name: token
+            mountPath: "/etc/inlets"
+            readOnly: true
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+    {{- with .Values.affinity }}
+      affinity:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
+      tolerations:
+        {{- toYaml . | nindent 8 }}
+    {{- end }}

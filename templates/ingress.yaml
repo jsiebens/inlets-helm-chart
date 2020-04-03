@@ -1,0 +1,22 @@
+{{- if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
+apiVersion: networking.k8s.io/v1beta1
+{{- else -}}
+apiVersion: extensions/v1beta1
+{{- end }}
+kind: Ingress
+metadata:
+  name: {{ include "inlets.fullname" . }}
+  labels:
+    {{- include "inlets.labels" . | nindent 4 }}
+  {{- with .Values.ingress.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  rules:
+    - host: {{ include "inlets.subdomain" . }}.{{ .Values.domain }}
+      http:
+        paths:
+          - backend:
+              serviceName: {{ include "inlets.fullname" . }}
+              servicePort: 8000
