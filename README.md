@@ -10,7 +10,7 @@ This chart bootstraps an Inlets deployment, service and ingress on a Kubernetes 
 
 For larger teams working on projects with webhooks like Stripe and Slack, it can become a little bit expensive when all members have a running exit-node to demo or test their stuff. Inlets is such a lightweight tool, and it can smoothly run in a container. When deployed on a Kubernetes cluster, many Inlets servers can share a single exit-node.
 
-Some cloud providers, like [DigitalOcean](https://www.digitalocean.com/products/kubernetes/) or [Scaleway](https://www.scaleway.com/en/kubernetes-kapsule/) have quite cheap Kubernetes services. (On Scaleway you can get a single node () Kubernetes cluster for €7.99/month)
+Some cloud providers, like [DigitalOcean](https://www.digitalocean.com/products/kubernetes/) or [Scaleway](https://www.scaleway.com/en/kubernetes-kapsule/) have quite cheap Kubernetes services. (On Scaleway you can get a single node Kubernetes cluster for €7.99/month)
 
 ## Prerequisites
 
